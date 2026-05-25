@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拼读沙盒 · 俄语拼读互助站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/site.css">
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+    <div id="site-header"></div>
+
+    <main class="max-w-4xl mx-auto px-4 py-8 sm:px-6">
+        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100">
+            <h2 class="text-xl font-bold flex items-center gap-2 border-b pb-3">
+                <span class="w-2.5 h-5 bg-teal-500 rounded-full"></span>拼读实验沙盒
+            </h2>
+            <p class="text-sm text-slate-500 mt-2">用下方虚拟键盘拼写俄语，点击「朗读」听发音。</p>
+
+            <div class="mt-4 flex gap-2 flex-wrap">
+                <input type="text" id="sandbox-input" placeholder="输入或点击键盘拼写..." class="flex-grow min-w-[200px] px-4 py-3 border rounded-xl text-lg font-semibold focus:ring-2 focus:ring-teal-500">
+                <button type="button" onclick="speakSandboxText()" class="px-5 py-3 bg-teal-500 hover:bg-teal-600 text-white rounded-xl font-bold">朗读</button>
+                <button type="button" onclick="clearSandbox()" class="px-4 py-3 bg-slate-100 hover:bg-slate-200 rounded-xl text-slate-600">清空</button>
+            </div>
+
+            <!-- 俄语虚拟键盘 -->
+            <div class="mt-4 space-y-1.5 bg-slate-50 p-3 rounded-xl border">
+                <div class="flex justify-center gap-1 flex-wrap">
+                    <button type="button" onclick="appendLetter('Й')" class="kb-btn w-9 h-10 sm:w-10 sm:h-11 bg-white border rounded font-bold">Й</button>
+                    <button type="button" onclick="appendLetter('Ц')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Ц</button>
+                    <button type="button" onclick="appendLetter('У')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">У</button>
+                    <button type="button" onclick="appendLetter('К')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">К</button>
+                    <button type="button" onclick="appendLetter('Е')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Е</button>
+                    <button type="button" onclick="appendLetter('Н')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Н</button>
+                    <button type="button" onclick="appendLetter('Г')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Г</button>
+                    <button type="button" onclick="appendLetter('Ш')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Ш</button>
+                    <button type="button" onclick="appendLetter('Щ')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Щ</button>
+                    <button type="button" onclick="appendLetter('З')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">З</button>
+                    <button type="button" onclick="appendLetter('Х')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Х</button>
+                    <button type="button" onclick="appendLetter('Ъ')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Ъ</button>
+                </div>
+                <div class="flex justify-center gap-1 flex-wrap">
+                    <button type="button" onclick="appendLetter('Ф')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Ф</button>
+                    <button type="button" onclick="appendLetter('Ы')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Ы</button>
+                    <button type="button" onclick="appendLetter('В')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">В</button>
+                    <button type="button" onclick="appendLetter('А')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">А</button>
+                    <button type="button" onclick="appendLetter('П')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">П</button>
+                    <button type="button" onclick="appendLetter('Р')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Р</button>
+                    <button type="button" onclick="appendLetter('О')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">О</button>
+                    <button type="button" onclick="appendLetter('Л')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Л</button>
+                    <button type="button" onclick="appendLetter('Д')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Д</button>
+                    <button type="button" onclick="appendLetter('Ж')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Ж</button>
+                    <button type="button" onclick="appendLetter('Э')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Э</button>
+                </div>
+                <div class="flex justify-center gap-1 flex-wrap">
+                    <button type="button" onclick="appendLetter('Я')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Я</button>
+                    <button type="button" onclick="appendLetter('Ч')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Ч</button>
+                    <button type="button" onclick="appendLetter('С')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">С</button>
+                    <button type="button" onclick="appendLetter('М')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">М</button>
+                    <button type="button" onclick="appendLetter('И')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">И</button>
+                    <button type="button" onclick="appendLetter('Т')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Т</button>
+                    <button type="button" onclick="appendLetter('Ь')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Ь</button>
+                    <button type="button" onclick="appendLetter('Б')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Б</button>
+                    <button type="button" onclick="appendLetter('Ю')" class="kb-btn w-9 h-10 bg-white border rounded font-bold">Ю</button>
+                    <button type="button" onclick="deleteLastLetter()" class="w-14 h-10 bg-slate-200 border rounded text-xs font-bold">退格</button>
+                </div>
+            </div>
+
+            <p class="mt-4 text-xs text-slate-400">
+                试试：<button type="button" onclick="speakPreset('Привет')" class="text-teal-600 hover:underline">Привет</button> ·
+                <button type="button" onclick="speakPreset('Здравствуйте')" class="text-teal-600 hover:underline">Здравствуйте</button>
+            </p>
+        </div>
+    </main>
+
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 pointer-events-none"></div>
+    <div id="site-footer"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/sandbox.js"></script>
+    <script>window.onload = function() { initSite('sandbox'); initSandboxPage(); };</script>
+</body>
+</html>

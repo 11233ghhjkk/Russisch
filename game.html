@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>配对游戏 · 俄语拼读互助站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/site.css">
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+    <div id="site-header"></div>
+
+    <main class="max-w-3xl mx-auto px-4 py-8">
+        <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl">
+            <span class="bg-teal-500/20 text-teal-300 text-xs font-bold px-3 py-1 rounded-full border border-teal-500/30">拼读自测</span>
+            <h2 class="text-2xl font-bold mt-3">医学高频词配对大作战</h2>
+            <p class="text-slate-300 text-sm mt-1">左侧点俄文听发音，右侧选中文释义，4 组全部配对即通关。</p>
+
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <span class="text-xs text-slate-400">医学俄文</span>
+                    <div id="game-ru-column" class="space-y-2 mt-2"></div>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-400">中文释义</span>
+                    <div id="game-cn-column" class="space-y-2 mt-2"></div>
+                </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-white/10 flex justify-between items-center flex-wrap gap-4">
+                <span id="game-feedback" class="text-sm font-semibold text-indigo-300">点击「换一组」开始</span>
+                <button type="button" onclick="initGame()" class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold border border-white/10">换一组词</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 pointer-events-none"></div>
+    <div id="site-footer"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/game.js"></script>
+    <script>window.onload = function() { initSite('game'); initGamePage(); };</script>
+</body>
+</html>
